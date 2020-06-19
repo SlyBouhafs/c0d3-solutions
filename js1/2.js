@@ -12,7 +12,13 @@
  */
 
 const solution = (num, fun) => {
-  return () => { }
+  return () => {
+    if (num <= 0) {
+      return null
+    }
+    num = num - 1 
+    return fun()
+  }
 }
 
 module.exports = {
