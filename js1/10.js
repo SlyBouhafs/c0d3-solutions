@@ -19,7 +19,6 @@
 
 const solution = (str, fun) => {
   let i = 0;
-  let f
   return () => {
     if (i >= str.length) {
       i = 0
