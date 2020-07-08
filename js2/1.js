@@ -12,6 +12,7 @@
 const solution = (num, arr = []) => {
   if (num <= 0) return arr;
   arr.push(arr.length);
+
   return solution(num - 1, arr);
 };
 
