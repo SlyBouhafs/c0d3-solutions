@@ -10,21 +10,22 @@
  * @returns {array}
  */
 
-const solution = (row, col, arr = [[]], ccol = col) => {
+const zeroArray = (col, arr = []) => {
+  if (col > 0) {
+    arr.push(0);
+    return zeroArray(col - 1, arr);
+  }
+  return arr;
+};
+
+const solution = (row, col, arr = []) => {
   // Not the best way but it does the job!
-  if (row === 0) {
-    arr.pop();
+  if (row <= 0) {
     return arr;
   }
+  arr[arr.length] = zeroArray(col);
 
-  if (row > 0) {
-    if (col > 0) {
-      arr[arr.length - 1].push(0);
-      return solution(row, col - 1, arr, ccol);
-    }
-    arr.push([]);
-    return solution(row - 1, (col = ccol), arr, ccol);
-  }
+  return solution(row - 1, col, arr);
 };
 
 module.exports = {
