@@ -5,10 +5,10 @@
  */
 
 const solution = () => {
-  Array.prototype.cForEach = function (cb, i = 0, result = []) {
+  Array.prototype.cForEach = function (cb, i = 0) {
     if (i >= this.length) return;
     cb(this[i], i, this);
-    return this.cForEach(cb, i + 1, result);
+    return this.cForEach(cb, i + 1);
   };
 };
 
