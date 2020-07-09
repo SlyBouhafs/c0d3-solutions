@@ -12,9 +12,9 @@
  */
 
 const solution = (num, fun) => {
-  return () => { }
-}
+  return () => {};
+};
 
 module.exports = {
-  solution
-}
+  solution,
+};
