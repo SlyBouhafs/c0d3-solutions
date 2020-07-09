@@ -6,8 +6,8 @@
 
 const solution = () => {
   Array.prototype.cForEach = function (cb, i = 0, result = []) {
-    if (i >= this.length) return result;
-    result = cb(this[i], i, this);
+    if (i >= this.length) return;
+    cb(this[i], i, this);
     return this.cForEach(cb, i + 1, result);
   };
 };
