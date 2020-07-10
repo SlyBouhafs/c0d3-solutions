@@ -10,10 +10,25 @@
  * @returns {array}
  */
 
-const solution = (row, col) => {
-  return []
-}
+const zeroArray = (col, arr = []) => {
+  if (col > 0) {
+    arr.push(0);
+    return zeroArray(col - 1, arr);
+  }
+  return arr;
+};
+
+const solution = (row, col, arr = []) => {
+  // Not the best way but it does the job!
+  if (row <= 0) {
+    return arr;
+  }
+  arr[arr.length] = zeroArray(col);
+
+  return solution(row - 1, col, arr);
+};
 
 module.exports = {
-  solution
-}
+  solution,
+};
+
