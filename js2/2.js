@@ -8,10 +8,14 @@
  * @returns {array}
  */
 
-const solution = (fun) => {
-  return []
-}
+const solution = (fun, arr = []) => {
+  if (!fun(arr.length)) {
+    arr.push(arr.length);
+    return solution(fun, arr);
+  }
+  return arr;
+};
 
 module.exports = {
-  solution
-}
+  solution,
+};
