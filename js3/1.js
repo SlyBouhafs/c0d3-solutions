@@ -6,7 +6,7 @@
 
 const solution = (arr, obj, result = []) => {
   arr.forEach((el, i) => {
-    if (obj[el]) return result.push(obj[el]);
+    if (obj[el]) result.push(obj[el]);
   });
   return result;
 };
