@@ -6,9 +6,15 @@
  */
 
 const solution = (arr, num) => {
-  return true
-}
+  const obj = {};
+  return (
+    arr.find((el) => {
+      if (obj[num - el]) return obj[num - el];
+      obj[el] = true;
+    }) !== undefined
+  );
+};
 
 module.exports = {
-  solution
-}
+  solution,
+};
