@@ -12,10 +12,23 @@
  * @return {array} arr
  */
 
-const solution = (num1, num2) => {
-  return []
-}
+const make1dObj = (rows, y, x = 0, arr = []) => {
+  if (rows > 0) {
+    arr.push({ x: x, y: y });
+    return make1dObj(rows - 1, y, x + 1, arr);
+  }
+  return arr;
+};
+
+const solution = (cols, rows, y = 0, arr = []) => {
+  if (cols > 0) {
+    arr[arr.length] = make1dObj(rows, y);
+    solution(cols - 1, rows, y + 1, arr);
+    y = 0;
+  }
+  return arr;
+};
 
 module.exports = {
-  solution
-}
+  solution,
+};
