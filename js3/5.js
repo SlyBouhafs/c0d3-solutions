@@ -6,8 +6,12 @@
  **/
 
 const solution = (obj1, obj2) => {
-  return {}
-}
+  return Object.keys(obj1).reduce((acc, el) => {
+    if (obj2[el]) acc[el] = obj2[el](el);
+    else acc[el] = obj1[el];
+    return acc;
+  }, {});
+};
 module.exports = {
-  solution
-}
+  solution,
+};
