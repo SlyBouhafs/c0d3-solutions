@@ -55,8 +55,10 @@
     };
 
     pokePrev.onclick = () => {
-      pokemonsTag.innerHTML = "Loading";
-      getNextPokemons(pokePrevUrl);
+      if (pokePrevUrl) {
+        pokemonsTag.innerHTML = "Loading";
+        getNextPokemons(pokePrevUrl);
+      }
     };
 
     getNextPokemons(pokeUrl);
