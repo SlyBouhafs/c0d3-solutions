@@ -11,7 +11,7 @@ const solution = (obj, num, arr = Object.keys(obj), i = 0) => {
   if (i === arr.length) return;
   obj[arr[i]](arr[i]);
   setTimeout(() => {
-    return solution(obj, num, arr, i + 1);
+    solution(obj, num, arr, i + 1);
   }, num * (i + 1));
 };
 
