@@ -5,22 +5,12 @@
  */
 
 const solution = (arr) => {
-  const obj = arr.reduce((acc, el) => {
-    acc[el] = (acc[el] || 0) + 1;
+  const obj = {};
+  return arr.reduce((acc, el) => {
+    if (obj[el] === 1) acc.push(el);
+    obj[el] = (obj[el] || 0) + 1;
     return acc;
-  }, {});
-  console.log(obj);
-
-  const filtered = Object.entries(obj).filter((el) => {
-    return el[1] > 1;
-  });
-
-  const map = filtered.map((el) => {
-    return parseInt(el[0]);
-  });
-  console.log(map);
-
-  return map;
+  }, []);
 };
 
 module.exports = {
