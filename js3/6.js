@@ -11,7 +11,7 @@ const solution = (arr) => {
   }, {});
   console.log(obj);
 
-  const filtered = Object.entries(obj).filter((el, i, arr) => {
+  const filtered = Object.entries(obj).filter((el) => {
     return el[1] > 1;
   });
 
