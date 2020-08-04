@@ -5,15 +5,10 @@
  */
 
 const solution = () => {
-  Object.prototype.map = function (
-    cb,
-    i = 0,
-    array = Object.keys(this),
-    result = []
-  ) {
-    if (i === array.length) return result;
-    result.push(cb(array[i], this[array[i]], i, this));
-    return this.map(cb, i + 1, array, result);
+  Object.prototype.map = function (cb, array = Object.keys(this)) {
+    return array.map((key, i) => {
+      return cb(key, this[key], i);
+    });
   };
 };
 
