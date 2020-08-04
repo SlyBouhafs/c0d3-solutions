@@ -5,12 +5,16 @@
  * @param {object} obj
  * @param {number} num (millieseconds)
  * @call each function value of the object, millieseconds after each other
-*/
+ */
 
-const solution = (obj, num) => {
-
-}
+const solution = (obj, num, arr = Object.keys(obj), i = 0) => {
+  if (i === arr.length) return;
+  obj[arr[i]](arr[i]);
+  setTimeout(() => {
+    return solution(obj, num, arr, i + 1);
+  }, num * (i + 1));
+};
 
 module.exports = {
-  solution
-}
+  solution,
+};
