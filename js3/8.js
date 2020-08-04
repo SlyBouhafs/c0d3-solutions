@@ -12,7 +12,7 @@ const solution = (obj, num, arr = Object.keys(obj), i = 0) => {
   obj[arr[i]](arr[i]);
   setTimeout(() => {
     solution(obj, num, arr, i + 1);
-  }, num * (i + 1));
+  }, num);
 };
 
 module.exports = {
