@@ -6,9 +6,13 @@
 
 const solution = (arr) => {
   return (obj) => {
-  }
-}
+    return arr.reduce((acc, el) => {
+      if (obj[el]) acc[el] = obj[el];
+      return acc;
+    }, {});
+  };
+};
 
 module.exports = {
-  solution
-}
+  solution,
+};
