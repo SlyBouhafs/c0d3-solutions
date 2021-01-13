@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google isn't fair</title>
+    <style>
+      .container {
+        width: 421px;
+        height: 168px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        cursor: none;
+      }
+
+      img .fair {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .scopeContainer {
+        position: fixed;
+        display: none;
+        width: 200px;
+        height: 200px;
+        background: url("https://c0d3.com/challenges/assets/fair/big.jpg")
+          no-repeat;
+        clip-path: circle(98px at center);
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <div class="container">
+    <img
+      src="https://c0d3.com/challenges/assets/fair/small.jpg"
+      alt=""
+      class="smallFair"
+    />
+  </div>
+  <div class="scopeContainer">
+    <img
+      src="https://www.c0d3.com/challenges/assets/fair/scope.png"
+      alt=""
+      class="scope"
+    />
+  </div>
+
+  <script>
+    const smallFair = document.querySelector(".smallFair");
+    const scope = document.querySelector(".scope");
+    const scopeContainer = document.querySelector(".scopeContainer");
+
+    const x = 1263 / 421;
+    const y = 503 / 168;
+
+    smallFair.addEventListener("mousemove", (e) => {
+      scopeContainer.style.display = "block";
+
+      scopeContainer.style.left = `${
+        e.offsetX + smallFair.parentElement.offsetLeft - 100
+      }px`;
+      scopeContainer.style.top = `${
+        e.offsetY + smallFair.parentElement.offsetTop - 100
+      }px`;
+      scopeContainer.style.backgroundPositionX = `${
+        -1 * e.offsetX * x + 100
+      }px`;
+      scopeContainer.style.backgroundPositionY = `${
+        -1 * e.offsetY * y + 100
+      }px`;
+    });
+
+    smallFair.addEventListener("mouseout", (e) => {
+      scopeContainer.style.display = "none";
+    });
+  </script>
+  <body></body>
+</html>
