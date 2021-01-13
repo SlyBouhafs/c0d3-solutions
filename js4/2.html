@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>We are all stardust</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+    />
+    <style>
+      .container {
+        width: 450px;
+        height: 225px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+      }
+      h1 {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 2.2em;
+      }
+      .stars {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .fas {
+        cursor: pointer;
+        -webkit-text-stroke-width: 7px;
+        -webkit-text-stroke-color: #000;
+        color: #ffc61e;
+      }
+
+      .many {
+        color: #ffc61e;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>
+        You <span class="how">are giving</span> <span class="many">0</span
+        > <span class="plural">star!</span>
+      </h1>
+      <div class="stars"></div>
+    </div>
+    <script>
+      const main = document.querySelector(".stars");
+      const verb = document.querySelector(".how");
+      const many = document.querySelector(".many");
+      const plural = document.querySelector(".plural");
+
+      const allStars = [];
+      let isLocked = false;
+
+      const manyStars = (count, callback, index = 0) => {
+        if (index >= count) return;
+        callback(index);
+        return manyStars(count, callback, index + 1);
+      };
+
+      main.addEventListener("mouseenter", () => {
+        isLocked = false;
+        verb.innerHTML = "are giving";
+      });
+
+      function Stars(idx) {
+        this.star = document.createElement("i");
+
+        this.star.className = "far fa-star fa-5x";
+
+        this.toggle = (newClass, oldClass) => {
+          this.star.classList.add(newClass);
+          this.star.classList.remove(oldClass);
+        };
+
+        this.fullStars = () => {
+          const counter = idx + 1;
+
+          manyStars(counter, (i) => {
+            allStars[i].toggle("fas", "far");
+          });
+
+          manyStars(
+            5,
+            (i) => {
+              allStars[i].toggle("far", "fas");
+            },
+            counter
+          );
+
+          many.innerText = counter;
+
+          if (counter >= 2) plural.innerText = "stars!";
+          else plural.innerText = "star!";
+        };
+
+        this.star.addEventListener("mouseenter", (e) => {
+          if (!isLocked) this.fullStars();
+        });
+
+        this.star.addEventListener("click", () => {
+          this.fullStars();
+          isLocked = true;
+          verb.innerHTML = "gave";
+        });
+
+        main.append(this.star);
+      }
+
+      manyStars(5, (i) => {
+        allStars.push(new Stars(i));
+      });
+    </script>
+  </body>
+</html>
