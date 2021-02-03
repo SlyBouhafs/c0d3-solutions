@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fake SmartWatch</title>
+    <style>
+
+      .container {
+        background: url(https://c0d3.com/challenges/assets/watch.jpg) no-repeat;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 600px;
+        height: 800px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .watch {
+        position: relative;
+        top: 208px;
+        left: 132px;
+        z-index: 0;
+        width: 378px;
+        height: 377px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      .watch iframe {
+        margin-top: -130px;
+        margin-left: -105px;
+        height: 140%;
+      }
+
+      .clock {
+        position: absolute;
+        top: 50%;
+        background: #f2f3f4ee;
+        width: 100%;
+        height: 120%;
+        text-align: center;
+        color: #424242;
+        transition: top 500ms cubic-bezier(.68,-0.55,.27,1.55);
+        cursor: pointer;
+      }
+
+      .clock h1 {
+        font-size: 5em;
+        margin: 45px;
+      }
+
+      .clock hr {
+        border: solid 1px #aaa;
+        margin-bottom: 40px;
+      }
+
+      .fullscreen {
+        top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+
+      <div class="watch">
+
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3220.0015031727457!2d5.40802031522407!3d36.19084528007862!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12f315995b02703f%3A0x104b35de6f73cfec!2sPark%20Mall%20S%C3%A9tif!5e0!3m2!1sfr!2sdz!4v1610421300127!5m2!1sfr!2sdz" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+        <div class="clock">
+          <h1 class="time"></h2>
+          <hr>
+          <h2 class="day"></h2>
+          <h2 class="date"></h2>
+        </div>
+
+      </div>
+    </div>
+
+    <script>
+      const clock = document.querySelector(".clock");
+      const time = document.querySelector(".time");
+      const day = document.querySelector(".day");
+      const date = document.querySelector(".date");
+
+      clock.addEventListener("click", () => {
+        clock.classList.toggle("fullscreen");
+      })
+
+      const now = new Date();
+      const hour = now.getHours();
+      const minute = now.getMinutes().toString();
+      const timeNow = hour + ":" + (minute.length < 2 ? `0${minute}` : minute);
+      const dayNow = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][now.getDay()];
+      const monthNow = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][now.getMonth()];
+      const dateNow = now.getDate();
+      const yearNow = now.getFullYear();
+
+      time.innerText = timeNow;
+      day.innerText = dayNow;
+      date.innerText = `${monthNow} ${dateNow}, ${yearNow}`
+
+    </script>
+  </body>
+</html>
